@@ -2,17 +2,18 @@
 
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export default function AboutUs() {
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: cubicBezier(0.17, 0.67, 0.83, 0.67) } },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: cubicBezier(0.17, 0.67, 0.83, 0.67) } },
   };
 
   return (

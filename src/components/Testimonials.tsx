@@ -1,7 +1,8 @@
 "use client";
 
 import React from 'react';
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export default function Testimonials() {
   const testimonials = [
@@ -22,12 +23,12 @@ export default function Testimonials() {
     },
   ];
 
-  const sectionVariants = {
+  const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: cubicBezier(0.17, 0.67, 0.83, 0.67) } },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
       opacity: 1,
@@ -35,7 +36,7 @@ export default function Testimonials() {
       transition: {
         delay: i * 0.1,
         duration: 0.6,
-        ease: "easeOut",
+        ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
       },
     }),
   };

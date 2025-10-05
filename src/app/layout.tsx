@@ -5,7 +5,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { MotionConfig, motion, useInView } from "framer-motion";
+import { MotionConfig, motion, useInView, cubicBezier } from "framer-motion";
+import type { Variants } from "framer-motion";
 import React from "react";
 
 const geistSans = Geist({
@@ -34,9 +35,9 @@ const ScrollAnimationWrapper: React.FC<ScrollAnimationWrapperProps> = ({
   const ref = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: once, amount: 0.3 });
 
-  const variants = {
+  const variants: Variants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { delay, duration, ease: cubicBezier(0.17, 0.67, 0.83, 0.67) } },
   };
 
   return (
@@ -45,7 +46,6 @@ const ScrollAnimationWrapper: React.FC<ScrollAnimationWrapperProps> = ({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
-      transition={{ delay, duration }}
     >
       {children}
     </motion.div>
